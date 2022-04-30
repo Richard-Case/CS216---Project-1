@@ -10,13 +10,8 @@ void IMDB::InsertActor(std::string actorName, std::set<std::string> movieTitles)
 	if (!ActorExists(actorName)) { actorMap[actorName] = movieTitles; }
     else { actorMap[actorName].insert(movieTitles.begin(), movieTitles.end()); }
 
-
     // Upgrade movieMap
-	for (auto index = movieTitles.begin(); index != movieTitles.end(); index++)
-    {
-		// Insert actorName into the appropriate actors set.
-		movieMap[*index].insert(actorName);
-    }
+	for (auto index = movieTitles.begin(); index != movieTitles.end(); index++) { movieMap[*index].insert(actorName); }
 }
 
 // Return a string that partially matches the string input by the user.
@@ -27,10 +22,7 @@ std::string IMDB::MatchExistingMovie(std::string& movieTitle) const
 
     for (auto index = movieMap.begin(); index != movieMap.end(); index++)
     {
-        if (regex_search(index->first, reg))
-        {
-            return index->first;
-        }
+        if (regex_search(index->first, reg)) { return index->first; }
     }
 
     return "";
@@ -51,10 +43,7 @@ std::string IMDB::MatchExistingActor(std::string& actorName) const
 
     for (auto index = actorMap.begin(); index != actorMap.end(); index++)
     {
-        if (regex_search(index->first, reg))
-        {
-            return index->first;
-        }
+        if (regex_search(index->first, reg)) { return index->first; }
     }
 
     return "";

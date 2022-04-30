@@ -12,11 +12,11 @@ void Analyze::Movies(const IMDB& imdb)
 	    do
 	    {
 			std::cout << clearTerminal
-				<< "Please enter the first movie title: ";
+				<< promptFirstMovie;
 		    getline(std::cin, movie1);
 
 			std::cout << std::endl
-			 	<< "You entered \"" << movie1 << "\". Is that correct?" << std::endl
+			 	<< promptEntered << movie1 << promptCheck
 				<< promptInput;
 			getline(std::cin, userInput);
 
@@ -30,11 +30,11 @@ void Analyze::Movies(const IMDB& imdb)
 		do
 		{
 			std::cout << clearTerminal
-				<< "Please enter the second movie title: ";
+				<< promptSecondMovie;
 		    getline(std::cin, movie2);
 
 			std::cout << std::endl
-			 	<< "You entered \"" << movie2 << "\". Is that correct?" << std::endl
+			 	<< promptEntered << movie2 << promptCheck << std::endl
 				<< promptInput;
 			getline(std::cin, userInput);
 
@@ -51,11 +51,10 @@ void Analyze::Movies(const IMDB& imdb)
 		if (matchedMovie1.length() > 0 && matchedMovie2.length() > 0)
 		{
 			std::cout << clearTerminal
-				<< "Your input matches the following two movies: " << std::endl
+				<< promptInputMatches
 				<< "1: " << matchedMovie1 << std::endl
 				<< "2: " << matchedMovie2 << std::endl << std::endl
-				<< "Both movies exist within the database."
-				<< std::endl
+				<< promptInDB << std::endl
 				<< promptContinue;
 			getline(std::cin, userInput);
 			if (userInput.length() != 0) { userInput = ""; }
@@ -63,13 +62,7 @@ void Analyze::Movies(const IMDB& imdb)
 	        do
 	        {
 				std::cout << clearTerminal
-					<< "Please make a selection from the following menu..." << std::endl
-					<< "A: All actors whom are in EITHER movie" << std::endl
-					<< "B: All actors whom are in EACH movie" << std::endl
-					<< "C: All actors whom are in BOTH movies" << std::endl
-					<< "O: All actors whom are in only ONE of the two movies" << std::endl
-					<< "Q: Quit to main menu" << std::endl
-					<< std::endl
+					<< promptMenu
 					<< promptInput;
 				getline(std::cin, userInput);
 
@@ -78,7 +71,7 @@ void Analyze::Movies(const IMDB& imdb)
 				if(userInput[0] == 'A' || userInput[0] == 'a')
 				{
 					std::cout << clearTerminal
-						<< "Searching for every actor in either movie." << std::endl
+						<< promptSearchActorInEither
 						<< promptContinue;
 					getline(std::cin, userInput);
 					if (userInput.length() != 0) { userInput = ""; }
@@ -105,7 +98,7 @@ void Analyze::Movies(const IMDB& imdb)
 				else if (userInput[0] == 'B' || userInput[0] == 'b')
 				{
 					std::cout << clearTerminal
-						<< "Searching for every actor in each movie." << std::endl
+						<< promptSearchActorInEach
 						<< promptContinue;
 					getline(std::cin, userInput);
 					if (userInput.length() != 0) { userInput = ""; }
@@ -138,7 +131,7 @@ void Analyze::Movies(const IMDB& imdb)
 				else if (userInput[0] == 'C' || userInput[0] == 'c')
 				{
 					std::cout << clearTerminal
-						<< "Searching for every actor in both movies." << std::endl
+						<< promptSearchActorInBoth << std::endl
 						<< promptContinue;
 					getline(std::cin, userInput);
 					if (userInput.length() != 0) { userInput = ""; }
@@ -179,7 +172,7 @@ void Analyze::Movies(const IMDB& imdb)
 				else if (userInput[0] == 'O' || userInput[0] == 'o')
 				{
 					std::cout << clearTerminal
-						<< "Searching for actors whom are only in one movie." << std::endl
+						<< promptSearchActorInOne << std::endl
 						<< promptContinue;
 					getline(std::cin, userInput);
 					if (userInput.length() != 0) { userInput = ""; }
@@ -208,7 +201,7 @@ void Analyze::Movies(const IMDB& imdb)
 							std::cout << actorCount++ << ": " << *index << std::endl;
 						}
 					}
-					else { std::cout << "No actors whom are only in " << matchedMovie1 << std::endl; }
+					else { std::cout << alertNoActors << matchedMovie1 << std::endl; }
 
 					std::cout << std::endl << matchedMovie2 << ":" << std::endl;
 					if (actorsOnlyInMovie2.size() != 0)
@@ -219,7 +212,7 @@ void Analyze::Movies(const IMDB& imdb)
 							std::cout << actorCount++ << ": " << *index << std::endl;
 						}
 					}
-					else { std::cout << "No actors whom are only in " << matchedMovie1 << std::endl; }
+					else { std::cout << alertNoActors << matchedMovie1 << std::endl; }
 
 					std::cout << std::endl << promptContinue;
 					getline(std::cin, userInput);
@@ -283,11 +276,12 @@ void Analyze::Actors (const IMDB& imdb)
 	do
 	{
 		std::cout << clearTerminal
-			<< "Please enter an Actor's name: ";
+			<< promptActorName
+			<< promptInput;
 		getline(std::cin, actorName);
 
 		std::cout << std::endl
-			<< "You entered \"" << actorName << "\". Is that correct?" << std::endl
+			<< promptEntered << actorName << promptCheck
 			<< promptInput;
 		getline(std::cin, userInput);
 
@@ -302,7 +296,7 @@ void Analyze::Actors (const IMDB& imdb)
 	if (matchedActor.length() > 0)
 	{
 		std::cout << clearTerminal
-			<< "Searching for every co-actor for " << actorName << "." << std::endl
+			<< promptCoactorSearch << actorName << "." << std::endl
 			<< promptContinue;
 		getline(std::cin, userInput);
 		if (userInput.length() != 0) { userInput = ""; }

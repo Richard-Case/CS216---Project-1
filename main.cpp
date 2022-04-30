@@ -18,14 +18,18 @@ Requirements:
 #include <sstream>
 #include "Analyze.h"
 
-int main(int argc, char* argv[])
+void WaitForUserContinue();
+void WaitForUserExit();
+
+int main(int numArgs, char* argPointers[])
 {
+	const int NECESSARY_NUM_ARGS = 2;
 	std::string userInput = "";
+
 	std::cout << clearTerminal
-		<< "This application accesses a database of MOVIES and ACTORS," << std::endl
-		<< "then displays relevant information according to input from the user." << std::endl
+		<< promptApplicationExplanation << std::endl
 		<< std::endl
-		<< "Press ENTER to begin...";
+		<< promptBegin;
 	getline(std::cin, userInput);
 	if (userInput.length() != 0) { userInput = ""; }
 
@@ -34,14 +38,15 @@ int main(int argc, char* argv[])
 	bool validFile = false;
 	std::ifstream userFile;
 
-    if (argc != 2)
+    if (numArgs != NECESSARY_NUM_ARGS)
     {
         std::cout << clearTerminal
-			<< alertWarning << argv[0] << " requires a text file to function." << std::endl
-			<< "Please provide a text file as input: ";
+			<< alertWarning << argPointers[0] << alterTextFile << std::endl
+			<< promptTextFile << std::endl
+			<< promptInput;
 			getline(std::cin, fileName);
     }
-	else { fileName = argv[1]; }
+	else { fileName = argPointers[1]; }
 
 	do
 	{
@@ -51,11 +56,15 @@ int main(int argc, char* argv[])
 	    if (!userFile.good())
 	    {
 	        std::cout << clearTerminal
-				<< alertWarning << "Cannot open file \"" << fileName << "\"!" << std::endl
-				<< "Please provide a text file as input, or enter \"QUIT\" to exit the application: ";
+				<< alertWarning << alertFileName1 << fileName << alertFileName2 << std::endl;
 			getline(std::cin, fileName);
 
-			if(toupper(fileName[0]) == 'Q' && toupper(fileName[1]) == 'U' && toupper(fileName[2]) == 'I' && toupper(fileName[3]) == 'T') { return 1; }
+			if(toupper(fileName[0]) == 'Q' && toupper(fileName[1]) == 'U' && toupper(fileName[2]) == 'I' && toupper(fileName[3]) == 'T')
+			{
+				std::cout << clearTerminal;
+				WaitForUserExit();
+				return 1;
+			}
 
 			validFile = false;
 	    }
@@ -101,11 +110,7 @@ int main(int argc, char* argv[])
 	do
 	{
 		std::cout << clearTerminal
-			<< "Please make a selection from the following menu..." << std::endl
-			<< "1: Find ACTORS in MOVIES" << std::endl
-			<< "2: FIND ACTORS and CO-ACTORS" << std::endl
-			<< "Q: Exit the application" << std::endl
-			<< std::endl
+			<< promptMainMenu << std::endl
 			<< promptInput;
 		getline(std::cin, userInput);
 
@@ -126,15 +131,31 @@ int main(int argc, char* argv[])
 		else
 		{
 			std::cout << clearTerminal
-				<< alertInvalidInput << std::endl
-				<< promptContinue;
-			getline(std::cin, userInput);
+				<< alertInvalidInput << std::endl;
+			WaitForUserContinue();
 			if (userInput.length() != 0) { userInput = ""; }
 		}
 
 	} while (!exit);
 
-	std::cout << clearTerminal
-		<< "Have a good one!" << std::endl;
+	WaitForUserExit();
+
     return 0;
+}
+
+void WaitForUserContinue()
+{
+	std::string passThrough = "";
+	std::cout << promptContinue;
+	getline(std::cin, passThrough);
+}
+
+void WaitForUserExit()
+{
+	std::string passThrough = "";
+	std::cout << clearTerminal
+		<< promptGoodbye
+		<< promptExit;
+	getline(std::cin, passThrough);
+	std::cout << clearTerminal;
 }
