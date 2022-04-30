@@ -14,7 +14,7 @@ class IMDB
 		void ClearTerminal();
 
 		// Insert an actor into the map of actors.
-		void InsertActor(std::string actorName, std::set<std::string> movieTitles);
+		void InsertActor(std::string& actorName, std::set<std::string>& movieTitles);
 
         // Return a string that partially matches the string input by the user.
         std::string MatchExistingMovie(std::string& movieTitle) const;

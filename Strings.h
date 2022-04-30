@@ -7,7 +7,7 @@ const std::string alert1InvalidMovie = " is INVALID. Would you like to try again
 const std::string alert2InvalidMovies = " are both INVALID. Would you like to try again?";
 const std::string alertError = "ERROR: ";
 const std::string alertFileName1 = "Cannot open file \"";
-const std::string alertFileName2 = "\"!\nPlease provide a text file as input, or enter \"QUIT\" to exit the application.";
+const std::string alertFileName2 = "\"!\nPlease provide a text file as input, or enter \"Q\" to exit the application.";
 const std::string alertInvalidInput = "INVALID INPUT \nPlease Try Again...";
 const std::string alertMissingActor = " not in database! \nPlease ensure that you typed the actor's name exactly.";
 const std::string alertMissingMovie = " not in database! \nPlease ensure that you typed the movie's title exactly.";
@@ -51,5 +51,15 @@ const std::string promptTextFile = "Please provide a text file as input.";
 
 // IOStream Utilities...
 const std::string clearTerminal = "\033[2J\033[1;1H";	// Clears the LINUX terminal.
+
+// INPUT CHECKS...
+const std::string checkMainOption01 = "1";
+const std::string checkMainOption02 = "2";
+const std::string checkMenuOption01 = "A";
+const std::string checkMenuOption02 = "B";
+const std::string checkMenuOption03 = "C";
+const std::string checkMenuOption04 = "O";
+const std::string checkQuit = "Q";
+const std::string checkYes = "Y";
 
 #endif

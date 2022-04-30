@@ -20,7 +20,7 @@ void Analyze::Movies(const IMDB& imdb)
 				<< promptInput;
 			getline(std::cin, userInput);
 
-			if (userInput[0] == 'Y' || userInput[0] == 'y') { moveForward = true; }
+			if (toupper(userInput[0]) == checkYes[0]) { moveForward = true; }
 			else { moveForward = false; }
 
 	    } while (!moveForward);
@@ -38,7 +38,7 @@ void Analyze::Movies(const IMDB& imdb)
 				<< promptInput;
 			getline(std::cin, userInput);
 
-			if (userInput[0] == 'Y' || userInput[0] == 'y') { moveForward = true; }
+			if (toupper(userInput[0]) == checkYes[0]) { moveForward = true; }
 			else { moveForward = false; }
 
 		} while (!moveForward);
@@ -68,7 +68,7 @@ void Analyze::Movies(const IMDB& imdb)
 
 
 				int actorCount = 0;
-				if(userInput[0] == 'A' || userInput[0] == 'a')
+				if(toupper(userInput[0]) == checkMenuOption01[0])
 				{
 					std::cout << clearTerminal
 						<< promptSearchActorInEither
@@ -95,7 +95,7 @@ void Analyze::Movies(const IMDB& imdb)
 					moveForward = false;
 
 				}
-				else if (userInput[0] == 'B' || userInput[0] == 'b')
+				else if (toupper(userInput[0]) == checkMenuOption02[0])
 				{
 					std::cout << clearTerminal
 						<< promptSearchActorInEach
@@ -128,7 +128,7 @@ void Analyze::Movies(const IMDB& imdb)
 					moveForward = false;
 
 				}
-				else if (userInput[0] == 'C' || userInput[0] == 'c')
+				else if (toupper(userInput[0]) == checkMenuOption03[0])
 				{
 					std::cout << clearTerminal
 						<< promptSearchActorInBoth << std::endl
@@ -169,7 +169,7 @@ void Analyze::Movies(const IMDB& imdb)
 					moveForward = false;
 
 				}
-				else if (userInput[0] == 'O' || userInput[0] == 'o')
+				else if (toupper(userInput[0]) == checkMenuOption04)
 				{
 					std::cout << clearTerminal
 						<< promptSearchActorInOne << std::endl
@@ -221,7 +221,7 @@ void Analyze::Movies(const IMDB& imdb)
 					moveForward = false;
 
 				}
-				else if (userInput[0] == 'Q' || userInput[0] == 'q')
+				else if (toupper(userInput[0]) == checkQuit[0])
 				{
 		            moveForward = true;
 				}
@@ -237,7 +237,7 @@ void Analyze::Movies(const IMDB& imdb)
 				}
 	        } while (!moveForward);
 
-			if(userInput[0] == 'Y' || userInput[0] == 'y') { moveForward = false; }
+			if(toupper(userInput[0]) == checkYes[0]) { moveForward = false; }
 			else { moveForward = true; }
 	    }
 	    else	// If either movie name entered by the user does not have a match...
@@ -285,7 +285,7 @@ void Analyze::Actors (const IMDB& imdb)
 			<< promptInput;
 		getline(std::cin, userInput);
 
-		if (userInput[0] == 'Y' || userInput[0] == 'y') { moveForward = true; }
+		if (toupper(userInput[0]) == checkYes[0]) { moveForward = true; }
 		else { moveForward = false; }
 
 	} while (!moveForward);

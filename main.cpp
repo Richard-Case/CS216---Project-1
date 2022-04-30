@@ -1,18 +1,3 @@
-/*
-Richard Case
-CS216 - Project 1
-
-Requirements:
-	- Utilize a provided text file to check the user's input and return results.
-	- Allow partial matches between the user input and movie titles.
-		- Not required for actor names, as names can be shared by different people.
-		- Allowed to require strcit casing, as well.
-	- Must use IMDB class header file, included as part of Lab 5.
-	- Must accurately replicate the output from the sample file.
-	  (http://www.cs.uky.edu/~yipike/CS216/PA1Sample_imdb.pdf)
-*/
-
-// Including...
 #include <fstream>
 #include <cctype>
 #include <sstream>
@@ -23,7 +8,7 @@ void WaitForUserExit();
 
 int main(int numArgs, char* argPointers[])
 {
-	const int NECESSARY_NUM_ARGS = 2;
+	const int REQ_NUM_ARGS = 2;
 	std::string userInput = "";
 
 	std::cout << clearTerminal
@@ -38,7 +23,7 @@ int main(int numArgs, char* argPointers[])
 	bool validFile = false;
 	std::ifstream userFile;
 
-    if (numArgs != NECESSARY_NUM_ARGS)
+    if (numArgs != REQ_NUM_ARGS)
     {
         std::cout << clearTerminal
 			<< alertWarning << argPointers[0] << alterTextFile << std::endl
@@ -59,7 +44,7 @@ int main(int numArgs, char* argPointers[])
 				<< alertWarning << alertFileName1 << fileName << alertFileName2 << std::endl;
 			getline(std::cin, fileName);
 
-			if(toupper(fileName[0]) == 'Q' && toupper(fileName[1]) == 'U' && toupper(fileName[2]) == 'I' && toupper(fileName[3]) == 'T')
+			if(toupper(fileName[0]) == checkQuit[0])
 			{
 				std::cout << clearTerminal;
 				WaitForUserExit();
@@ -114,17 +99,17 @@ int main(int numArgs, char* argPointers[])
 			<< promptInput;
 		getline(std::cin, userInput);
 
-		if(userInput == "1")
+		if(userInput[0] == checkMainMenu1[0])
 		{
 			analyze->Movies(imdb);
             exit = false;
 		}
-		else if (userInput == "2")
+		else if (userInput[0] == checkMainMenu2[0])
 		{
 			analyze->Actors(imdb);
             exit = false;
 		}
-		else if (userInput[0] == 'Q' || userInput[0] == 'q')
+		else if (toupper(userInput[0]) == checkQuit[0])
 		{
 			exit = true;
 		}

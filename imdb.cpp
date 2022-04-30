@@ -1,10 +1,10 @@
 #include <regex>
 #include "imdb.h"
 
-IMDB::IMDB() { /* Empty */ }		// default constructor
+IMDB::IMDB() {}		// default constructor
 
 // Insert an actor into the map of actors.
-void IMDB::InsertActor(std::string actorName, std::set<std::string> movieTitles)
+void IMDB::InsertActor(std::string& actorName, std::set<std::string>& movieTitles)
 {
     // Upgrade actorMap
 	if (!ActorExists(actorName)) { actorMap[actorName] = movieTitles; }
