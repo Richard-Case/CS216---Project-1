@@ -1,5 +1,4 @@
 #include "imdb.h"
-#include "Strings.h"
 
 class Analyze
 {

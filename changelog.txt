@@ -45,4 +45,3 @@ CHANGLOG:
 			- Cleaned up unnecessary files from development directory.
 			- Moved every string to the string container file, for easy management and translation by theroretical future users.
 			- Refactored input checks to be more efficient, using easily editable strings from the string container file.
-			- 
